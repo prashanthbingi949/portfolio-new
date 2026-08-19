@@ -10,6 +10,7 @@ export const SITE_CONTENT = {
     contactLabel: "Contact",
     scrollLabel: "Scroll",
     viewWorkLabel: "VIEW WORK",
+    emailLabel: "Email",
     footerCredit: "Designed and built with intention.",
     footerStack: "React · TypeScript · Tailwind",
     copyrightPrefix: "©",
@@ -54,3 +55,26 @@ export const SITE_CONTENT = {
     ],
   },
 } as const;
+
+export function mergeSiteContent(saved: any) {
+  if (!saved || typeof saved !== "object") return structuredClone(SITE_CONTENT);
+  return {
+    ...structuredClone(SITE_CONTENT),
+    ...saved,
+    site: { ...SITE_CONTENT.site, ...(saved.site ?? {}) },
+    identity: { ...SITE_CONTENT.identity, ...(saved.identity ?? {}) },
+    about: {
+      ...SITE_CONTENT.about,
+      ...(saved.about ?? {}),
+      bio: Array.isArray(saved.about?.bio) ? saved.about.bio : SITE_CONTENT.about.bio,
+      stats: Array.isArray(saved.about?.stats) ? saved.about.stats : SITE_CONTENT.about.stats,
+    },
+    skills: Array.isArray(saved.skills) ? saved.skills : SITE_CONTENT.skills,
+    projects: Array.isArray(saved.projects) ? saved.projects : SITE_CONTENT.projects,
+    contact: {
+      ...SITE_CONTENT.contact,
+      ...(saved.contact ?? {}),
+      socials: Array.isArray(saved.contact?.socials) ? saved.contact.socials : SITE_CONTENT.contact.socials,
+    },
+  };
+}
