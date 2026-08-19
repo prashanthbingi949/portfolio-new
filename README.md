@@ -1,12 +1,11 @@
-# Portfolio New
 
-Master portfolio template.
+  # Portfolio
 
-## Stack
-- React
-- Vite
-- TypeScript
+  This is a code bundle for Portfolio. The original project is available at https://www.figma.com/design/NqOXK4wKhFKWG8FBNIfJZb/Portfolio.
 
-## Deployment
-Build command: `npm run build`
-Publish directory: `dist`
+  ## Running the code
+
+  Run `npm i` to install the dependencies.
+
+  Run `npm run dev` to start the development server.
+  
