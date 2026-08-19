@@ -1,0 +1,41 @@
+import { getStore } from '@netlify/blobs';
+import { getUser } from '@netlify/identity';
+
+const DEFAULT_CONTENT = {
+  identity: { name: 'Alex Reyes', role: 'Design Engineer · Developer', tagline: 'I build interfaces where engineering and design become indistinguishable — and the seam disappears.' },
+  about: { headline: 'I work at the seam between <accent>design</accent> and <accent>engineering</accent> — where the hardest problems live.', bio: ['Five years building products used by hundreds of thousands of people, across fintech, creative tooling, and infrastructure. I care about the craft — the pixel, the interaction, the architecture — and about shipping things that matter.', 'Previously at Stripe, Figma (contract), and two early-stage startups. Currently open to senior design engineering roles and selective consulting.'], stats: [{ value: '5+', label: 'Years' }, { value: '40+', label: 'Projects' }, { value: '12M+', label: 'Users' }] },
+  projects: [
+    { id:'01', title:'Meridian Design System', category:'Design Engineering', year:'2024', tags:['React','Figma','TypeScript'], description:'A comprehensive component library serving 12 product teams with 200+ primitives and a fully-automated documentation site deployed on every merge.', accent:'#e8ff00', link:'#' },
+    { id:'02', title:'Aether Motion Language', category:'Motion Design', year:'2024', tags:['After Effects','Lottie','Web Animation'], description:'Brand motion guidelines and animation toolkit for a Series B fintech — from micro-interactions to full-screen narrative transitions.', accent:'#ff6b35', link:'#' },
+    { id:'03', title:'Kairo Commerce Platform', category:'Full-Stack Development', year:'2023', tags:['Next.js','Postgres','Stripe'], description:'End-to-end e-commerce infrastructure handling $4M+ in annual transactions across 40 independent storefronts with sub-80ms p99 latency.', accent:'#00d4aa', link:'#' },
+    { id:'04', title:'Voix — Generative Music', category:'Product Design', year:'2023', tags:['AI/ML','React','Figma'], description:'0→1 product design for a generative music composition tool — from concept sketches through shipped iOS app with 22k downloads in month one.', accent:'#c084fc', link:'#' }
+  ],
+  skills:[{category:'Design',items:['Figma','Design Systems','Motion Design','Brand Identity','Prototyping']},{category:'Engineering',items:['React / Next.js','TypeScript','Node.js','PostgreSQL','GraphQL']},{category:'Toolchain',items:['Vercel','AWS','Framer','After Effects','Linear','Storybook']}],
+  contact:{headline:"Let's build something worth remembering.",subtext:'Available for senior IC roles, design engineering consulting, and the occasional collaboration that sounds too interesting to pass up.',email:'alex@reyesdesign.io',socials:[{label:'LinkedIn',handle:'/in/alexreyes',url:'#'},{label:'GitHub',handle:'alexreyes-dev',url:'#'},{label:'Dribbble',handle:'alexreyes',url:'#'},{label:'Twitter / X',handle:'@reyesdesigns',url:'#'}]}
+};
+
+const store = getStore('portfolio-content');
+const KEY = 'site';
+
+export default async (request: Request) => {
+  if (request.method === 'GET') {
+    const saved = await store.get(KEY, { type: 'json' });
+    return Response.json(saved ?? DEFAULT_CONTENT, { headers: { 'cache-control': 'no-store' } });
+  }
+
+  if (request.method === 'PUT') {
+    const user = await getUser();
+    if (!user) return new Response('Unauthorized', { status: 401 });
+
+    let body: unknown;
+    try { body = await request.json(); } catch { return new Response('Invalid JSON', { status: 400 }); }
+    if (!body || typeof body !== 'object') return new Response('Invalid content', { status: 400 });
+
+    await store.setJSON(KEY, body);
+    return Response.json({ ok: true, updatedBy: user.email ?? user.id });
+  }
+
+  return new Response('Method Not Allowed', { status: 405, headers: { allow: 'GET, PUT' } });
+};
+
+export const config = { path: '/api/content' };
