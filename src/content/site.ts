@@ -16,20 +16,20 @@ export const SITE_CONTENT = {
     copyrightPrefix: "©",
   },
   identity: {
-    name: "Alex Reyes",
+    name: "Prashanth Bingi",
     role: "Design Engineer · Developer",
     tagline: "I build interfaces where engineering and design become indistinguishable — and the seam disappears.",
   },
   about: {
     headline: "I work at the seam between <accent>design</accent> and <accent>engineering</accent> — where the hardest problems live.",
     bio: [
-      "Five years building products used by hundreds of thousands of people, across fintech, creative tooling, and infrastructure. I care about the craft — the pixel, the interaction, the architecture — and about shipping things that matter.",
-      "Previously at Stripe, Figma (contract), and two early-stage startups. Currently open to senior design engineering roles and selective consulting.",
+      "I design and develop websites and digital experiences across UI/UX, frontend development, e-commerce, and performance. I care about the details — from the interface and interaction to the code behind it — and I enjoy turning ideas into websites that are useful, responsive, and built to perform.",
+      "My work spans web design, frontend development, backend integration, e-commerce, SEO, and ongoing website maintenance. I’m always looking for better ways to combine thoughtful design with clean, functional development.",
     ],
     stats: [
-      { value: "5+", label: "Years" },
-      { value: "40+", label: "Projects" },
-      { value: "12M+", label: "Users" },
+      { value: "X+", label: "Years Experience" },
+      { value: "X+", label: "Projects" },
+      { value: "X+", label: "Web Experiences" },
     ],
   },
   skills: [
@@ -38,14 +38,14 @@ export const SITE_CONTENT = {
     { category: "Toolchain", items: ["Vercel", "AWS", "Framer", "After Effects", "Linear", "Storybook"] },
   ],
   projects: [
-    { id: "01", title: "Meridian Design System", category: "Design Engineering", year: "2024", tags: ["React", "Figma", "TypeScript"], description: "A comprehensive component library serving 12 product teams with 200+ primitives and a fully-automated documentation site deployed on every merge.", accent: "#e8ff00", link: "#" },
-    { id: "02", title: "Aether Motion Language", category: "Motion Design", year: "2024", tags: ["After Effects", "Lottie", "Web Animation"], description: "Brand motion guidelines and animation toolkit for a Series B fintech — from micro-interactions to full-screen narrative transitions.", accent: "#ff6b35", link: "#" },
-    { id: "03", title: "Kairo Commerce Platform", category: "Full-Stack Development", year: "2023", tags: ["Next.js", "Postgres", "Stripe"], description: "End-to-end e-commerce infrastructure handling $4M+ in annual transactions across 40 independent storefronts with sub-80ms p99 latency.", accent: "#00d4aa", link: "#" },
-    { id: "04", title: "Voix — Generative Music", category: "Product Design", year: "2023", tags: ["AI/ML", "React", "Figma"], description: "0→1 product design for a generative music composition tool — from concept sketches through shipped iOS app with 22k downloads in month one.", accent: "#c084fc", link: "#" },
+    { id: "01", title: "E-COMMERCE WEBSITE", category: "WEB DESIGN · FRONTEND · E-COMMERCE", year: "2023", tags: ["FIGMA", "HTML", "CSS", "JAVASCRIPT"], description: "A responsive e-commerce experience designed for simple product discovery, smooth navigation, and a seamless shopping experience.", accent: "#e8ff00", link: "#" },
+    { id: "02", title: "BUSINESS WEBSITE", category: "WEB DESIGN · DEVELOPMENT · SEO", year: "2024", tags: ["FIGMA", "JAVASCRIPT", "SEO"], description: "A modern business website built to communicate the brand clearly while delivering a fast and responsive experience across devices.", accent: "#ff6b35", link: "#" },
+    { id: "03", title: "WEB APPLICATION", category: "UI/UX · FRONTEND DEVELOPMENT", year: "2025", tags: ["FIGMA", "REACT", "API"], description: "A functional web interface focused on intuitive navigation, clear information hierarchy, and a smooth user experience.", accent: "#00d4aa", link: "#" },
+    { id: "04", title: "E-COMMERCE PLATFORM", category: "FULL-STACK DEVELOPMENT", year: "2025", tags: ["REACT", "NODE.JS", "DATABASE", "PAYMENTS"], description: "An end-to-end commerce experience connecting frontend interfaces, backend functionality, product management, and online payments.", accent: "#c084fc", link: "#" },
   ],
   contact: {
     headline: "Let's build something worth remembering.",
-    subtext: "Available for senior IC roles, design engineering consulting, and the occasional collaboration that sounds too interesting to pass up.",
+    subtext: "Open to web design and development projects, freelance work, and collaborations with interesting people and teams.",
     email: "alex@reyesdesign.io",
     socials: [
       { label: "LinkedIn", handle: "/in/alexreyes", url: "#" },
