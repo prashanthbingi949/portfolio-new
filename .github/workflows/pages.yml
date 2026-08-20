@@ -27,7 +27,10 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --include=dev
+
+      - name: Verify React runtime
+        run: node -e "console.log(require.resolve('react-dom/client')); console.log(require.resolve('react'));"
 
       - name: Build
         run: npm run build
