@@ -33,17 +33,23 @@ export default function ClientApp() {
     setMenuOpen(false);
   };
 
+  const navItems = [
+    { label: "Work", id: "work" },
+    { label: "About", id: "about" },
+    { label: "Contact", id: "contact" },
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden" style={{ fontFamily: "'Outfit', sans-serif" }}>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrollY > 80 ? "border-b border-border bg-background/95 backdrop-blur-md" : ""}`}>
         <div className="flex items-center justify-between px-6 md:px-10 h-14">
-          <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-xs tracking-[0.2em] uppercase text-foreground/50 hover:text-foreground transition-colors" style={MONO}>{content.identity.name}</button>
+          <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className={`text-xs tracking-[0.2em] uppercase transition-colors ${scrollY > 80 ? "text-foreground/50 hover:text-foreground" : "text-foreground/60 hover:text-foreground"}`} style={MONO}>{content.identity.name}</button>
           <div className="hidden md:flex items-center gap-10">
-            {[{ label: "Work", id: "work" }, { label: "About", id: "about" }, { label: "Contact", id: "contact" }].map((item) => <button key={item.id} onClick={() => scrollTo(item.id)} className="text-xs tracking-[0.2em] uppercase text-foreground/40 hover:text-accent transition-colors" style={MONO}>{item.label}</button>)}
+            {navItems.map((item) => <button key={item.id} onClick={() => scrollTo(item.id)} className={`text-xs tracking-[0.2em] uppercase transition-colors ${scrollY > 80 ? "text-foreground/55 hover:text-accent" : "text-[#0b0b0a]/75 hover:text-[#0b0b0a]"}`} style={MONO}>{item.label}</button>)}
           </div>
-          <button className="md:hidden text-foreground/60" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">{menuOpen ? <X size={18} /> : <Menu size={18} />}</button>
+          <button className={`md:hidden transition-colors ${scrollY > 80 ? "text-foreground/60" : "text-[#0b0b0a]/80"}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">{menuOpen ? <X size={18} /> : <Menu size={18} />}</button>
         </div>
-        {menuOpen && <div className="md:hidden border-t border-border bg-background px-6 py-10 flex flex-col gap-8">{[{ label: "Work", id: "work" }, { label: "About", id: "about" }, { label: "Contact", id: "contact" }].map((item) => <button key={item.id} onClick={() => scrollTo(item.id)} className="text-left text-4xl font-bold tracking-tight hover:text-accent transition-colors" style={DISPLAY}>{item.label}</button>)}</div>}
+        {menuOpen && <div className="md:hidden border-t border-border bg-background px-6 py-10 flex flex-col gap-8">{navItems.map((item) => <button key={item.id} onClick={() => scrollTo(item.id)} className="text-left text-4xl font-bold tracking-tight hover:text-accent transition-colors" style={DISPLAY}>{item.label}</button>)}</div>}
       </nav>
 
       <section className="relative min-h-screen flex flex-col justify-end overflow-hidden">
