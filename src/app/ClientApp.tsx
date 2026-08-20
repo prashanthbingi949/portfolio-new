@@ -16,6 +16,7 @@ export default function ClientApp() {
   const [content, setContent] = useState<any>(SITE_CONTENT);
   const [menuOpen, setMenuOpen] = useState(false);
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+  const [activeSkill, setActiveSkill] = useState<string | null>(null);
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -38,6 +39,10 @@ export default function ClientApp() {
     { label: "About", id: "about" },
     { label: "Contact", id: "contact" },
   ];
+
+  const toggleSkill = (skillId: string) => {
+    setActiveSkill((current) => current === skillId ? null : skillId);
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden" style={{ fontFamily: "'Outfit', sans-serif" }}>
@@ -83,7 +88,7 @@ export default function ClientApp() {
 
       <section id="about" className="bg-card border-t border-b border-border px-6 md:px-10 py-24 md:py-36">
         <SectionHeader label="About" />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-24"><div><p className="font-bold leading-tight mb-8 text-foreground" style={{ ...DISPLAY, fontSize: "clamp(1.5rem, 3vw, 2.25rem)" }}><AccentText text={content.about.headline} /></p><div className="space-y-4 text-foreground/50 leading-relaxed text-sm md:text-base">{content.about.bio.map((para: string, i: number) => <p key={i}>{para}</p>)}</div><div className="grid grid-cols-3 gap-6 border-t border-border mt-10 pt-10">{content.about.stats.map((stat: any) => <div key={stat.label}><div className="font-extrabold text-accent mb-1" style={{ ...DISPLAY, fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1 }}>{stat.value}</div><div className="text-xs tracking-[0.2em] uppercase text-foreground/30" style={MONO}>{stat.label}</div></div>)}</div></div><div className="space-y-10">{content.skills.map((group: any) => <div key={group.category}><div className="text-xs tracking-[0.25em] uppercase text-foreground/25 border-b border-border pb-3 mb-5" style={MONO}>{group.category}</div><div className="flex flex-wrap gap-2">{group.items.map((item: string) => <span key={item} className="text-sm px-3 py-2 border border-border text-foreground/55 transition-all duration-200 hover:border-accent hover:text-accent cursor-default" style={MONO}>{item}</span>)}</div></div>)}</div></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-24"><div><p className="font-bold leading-tight mb-8 text-foreground" style={{ ...DISPLAY, fontSize: "clamp(1.5rem, 3vw, 2.25rem)" }}><AccentText text={content.about.headline} /></p><div className="space-y-4 text-foreground/50 leading-relaxed text-sm md:text-base">{content.about.bio.map((para: string, i: number) => <p key={i}>{para}</p>)}</div><div className="grid grid-cols-3 gap-6 border-t border-border mt-10 pt-10">{content.about.stats.map((stat: any) => <div key={stat.label}><div className="font-extrabold text-accent mb-1" style={{ ...DISPLAY, fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1 }}>{stat.value}</div><div className="text-xs tracking-[0.2em] uppercase text-foreground/30" style={MONO}>{stat.label}</div></div>)}</div></div><div className="space-y-10">{content.skills.map((group: any) => <div key={group.category}><div className="text-xs tracking-[0.25em] uppercase text-foreground/25 border-b border-border pb-3 mb-5" style={MONO}>{group.category}</div><div className="flex flex-wrap gap-2">{group.items.map((item: string) => { const skillId = `${group.category}:${item}`; const active = activeSkill === skillId; return <span key={skillId} role="button" tabIndex={0} aria-pressed={active} onPointerDown={() => toggleSkill(skillId)} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); toggleSkill(skillId); } }} className={`text-sm px-3 py-2 border transition-all duration-200 cursor-pointer select-none outline-none ${active ? "border-accent text-accent" : "border-border text-foreground/55 hover:border-accent hover:text-accent"}`} style={MONO}>{item}</span>; })}</div></div>)}</div></div>
       </section>
 
       <section id="contact" className="px-6 md:px-10 py-24 md:py-36"><SectionHeader label="Contact" /><div className="grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-24 items-end"><div><h2 className="font-extrabold leading-[0.92] text-foreground mb-8" style={{ ...DISPLAY, fontSize: "clamp(2.5rem, 7vw, 5.5rem)" }}>{content.contact.headline}</h2><p className="text-foreground/45 leading-relaxed max-w-xs text-sm md:text-base">{content.contact.subtext}</p></div><div className="space-y-3"><a href={`mailto:${content.contact.email}`} className="group flex items-center justify-between border border-border p-6 hover:border-accent transition-all"><div><div className="text-xs tracking-[0.2em] uppercase text-foreground/30 mb-1" style={MONO}>Email</div><div className="text-lg font-medium group-hover:text-accent">{content.contact.email}</div></div><ArrowUpRight size={18} /></a><div className="grid grid-cols-2 gap-3">{content.contact.socials.map((social: any) => <a key={social.label} href={social.url} target="_blank" rel="noopener noreferrer" className="group border border-border p-4 hover:border-accent transition-all"><div className="text-xs tracking-[0.2em] uppercase text-foreground/25 mb-1.5" style={MONO}>{social.label}</div><div className="text-sm text-foreground/50 group-hover:text-foreground" style={MONO}>{social.handle}</div></a>)}</div></div></div></section>
