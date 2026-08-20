@@ -57,7 +57,7 @@ export default function ClientApp() {
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((open) => !open)}
-            className={`md:hidden inline-flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${scrollY > 80 ? "border-white/15 bg-white/5 text-white" : "border-black/20 bg-black/10 text-black"}`}
+            className={`md:hidden inline-flex h-9 w-9 items-center justify-center transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${scrollY > 80 ? "text-white" : "text-black"}`}
           >
             {menuOpen ? <X size={19} strokeWidth={2.25} /> : <Menu size={19} strokeWidth={2.25} />}
           </button>
