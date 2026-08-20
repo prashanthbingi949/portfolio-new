@@ -46,12 +46,12 @@ export const SITE_CONTENT = {
   contact: {
     headline: "Let's build something worth remembering.",
     subtext: "Open to web design and development projects, freelance work, and collaborations with interesting people and teams.",
-    email: "alex@reyesdesign.io",
+    email: "prashanthsai949@gmail.com",
     socials: [
-      { label: "LinkedIn", handle: "/in/alexreyes", url: "#" },
-      { label: "GitHub", handle: "alexreyes-dev", url: "#" },
-      { label: "Dribbble", handle: "alexreyes", url: "#" },
-      { label: "Twitter / X", handle: "@reyesdesigns", url: "#" },
+      { label: "LinkedIn", handle: "/in/sai-prashanth-bingi-sp01", url: "https://www.linkedin.com/in/sai-prashanth-bingi-sp01" },
+      { label: "GitHub", handle: "prashanthbingi-dev", url: "https://github.com/prashanthbingi-dev" },
+      { label: "Dribbble", handle: "prashanthbingi", url: "https://dribbble.com/prashanthbingi" },
+      { label: "Twitter / X", handle: "@bingidesigns", url: "https://x.com/bingidesigns" },
     ],
   },
 } as const;
