@@ -1,3 +1,26 @@
 @import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
+
+/* Skill chips: hover on real hover devices, touch highlight only while pressed. */
+@media (hover: hover) and (pointer: fine) {
+  #about button:hover {
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
+    background: transparent !important;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  #about button:hover {
+    border-color: var(--border) !important;
+    color: rgba(240, 235, 227, 0.55) !important;
+    background: transparent !important;
+  }
+
+  #about button:active {
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
+    background: transparent !important;
+  }
+}
